@@ -17,15 +17,15 @@
     <h1> Weather Dashboard</h1>
 <!--This section invites users to search for a city-->
     <section class="container">
-        <main id="main">
+        
         <div class="row">
             <div class="col-md-12">
                 <div>Search for a city<br>
-                    <input type="text" id="searchBar" />
-                    <button type="submit" id="search"><i class="fa fa-search"></i></button>
+                    <input type="text" id="city-input" />
+                    <button type="submit" id="search-city"><i class="fa fa-search"></i></button>
                 </div>
 <!--This section displays users' search history-->
-                <div class="d-flex flex-column">
+                <div id="search-history" class="d-flex flex-column">
                     <div class="p-2">City 1</div>
                     <div class="p-2">City 2</div>
                     <div class="p-2">City 3</div>
@@ -35,10 +35,10 @@
                     <div class="p-2">City 7</div>
                     <div class="p-2">City 8</div>
                 </div>
-        </main>
+       
 <!--This section presents today's weather-->
                 <div class="col-md-12" style="height:200px"></div>
-                    <div id="today-city-weather-container">
+                    <main id="city-weather-container">
                         <div class="city"></div>
                         <div class="temp"></div>
                         <div class="humidity"></div>
@@ -47,7 +47,7 @@
                         <p id="current-temp"><small class="text-muted">Humidity:</small></p>
                         <p id="current-humidity"><small class="text-muted">Wind Speed:</small></p>
                         <p id="current-UVIndex"><small class="text-muted">UV Index:</small></p>-->
-                    </div>
+                    </main>
 <!--This section presents the next five-day weather forcast-->
                     <h4>Five-Day Forcast</h4>
                     <div id="forcast-container"></div>

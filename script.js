@@ -1,19 +1,23 @@
-var APIKey = "82fcfb57b845804458f56e1829f74f3b"; //create variable to store API key
-var city="London";                         //create variable to store user input for the city
+var APIKey = "82fcfb57b845804458f56e1829f74f3b";                             //create variable to store API key
+var city="London";                                                           //create variable to store user input for the city
 var queryUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;  //construct a query URL "https://openweathermap.org/current#name" using string concatenation to store the OW current weather data URL and the necessary variables
-var searchInputEl = document.querySelector("#searchBar");
-var todayContainer = document.querySelector("#today-city-weather-container");
+var cityInputEl = document.querySelector("#city-input");
+var todayContainer = document.querySelector("#city-weather-container");
 var forcastContainer = document.querySelector("#forcast-container");
-var buttonElm = document.getElementById("search")
+var buttonElm = document.getElementById("search-city")
 
 $.ajax({
     url: queryUrl,
     method: "GET"
 }).then(function(response){
-    console.log(queryUrl);
     console.log(response);
+    /*$("#city-weather-container").empty();                                   //empty the contents of the city-weather-container, append the new city content
+    var newData =$("<main>");*/
 
-    $(".city").html("<h1>" + response.name + "Weather Details</h1>");
+    console.log(queryUrl);
+    console.log(response);                                                  //print the object to console
+
+    $(".city").html("<h1>" + response.name + " Weather Details</h1>");      //construct HTML containing current city information
     $(".temp").text("Temperature(F): " + response.main.temp);
     $(".humidity").text("Humidity: " + response.main.humidity);
     var windSpeed = response.wind.speed;
