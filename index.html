@@ -1,20 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/Users/hmtsang/Desktop/UCBerkeleryBootcamp/Homework/Weather-Dashboard/style.css">
+
+    <title>Weather Dashboard</title>
 </head>
+
 <body>
     <h1> Weather Dashboard</h1>
+    <section class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div>Search for a city<br>
+                    <input type="text" id="searchBar" />
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="/Users/hmtsang/Desktop/UCBerkeleryBootcamp/Homework/Weather-Dashboard/script.js"></script>
+                <div class="d-flex flex-column">
+                    <div class="p-2">City 1</div>
+                    <div class="p-2">City 2</div>
+                    <div class="p-2">City 3</div>
+                    <div class="p-2">City 4</div>
+                    <div class="p-2">City 5</div>
+                    <div class="p-2">City 6</div>
+                    <div class="p-2">City 7</div>
+                    <div class="p-2">City 8</div>
+                </div>
+
+                <div class="col-md-12" style="height:200px">
+                    Today city weather
+
+                    <div class="container">
+                        Five days forcast
+                        <div class="card-deck">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-date">Day 1</h5><br>
+                                    <p class="card-temp"><small class="text-muted">Temp:</small></p>
+                                    <p class="card-humidity"><small class="text-muted">Humidity:</small></p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-date">Day 2</h5><br>
+                                    <p class="card-temp"><small class="text-muted">Temp:</small></p>
+                                    <p class="card-humidity"><small class="text-muted">Humidity:</small></p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-date">Day 3</h5><br>
+                                    <p class="card-temp"><small class="text-muted">Temp:</small></p>
+                                    <p class="card-humidity"><small class="text-muted">Humidity:</small></p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-date">Day 4</h5><br>
+                                    <p class="card-temp"><small class="text-muted">Temp:</small></p>
+                                    <p class="card-humidity"><small class="text-muted">Humidity:</small></p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-date">Day 5</h5><br>
+                                    <p class="card-temp"><small class="text-muted">Temp:</small></p>
+                                    <p class="card-humidity"><small class="text-muted">Humidity:</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript"
+        src="/Users/hmtsang/Desktop/UCBerkeleryBootcamp/Homework/Weather-Dashboard/script.js"></script>
 </body>
+
 </html>
-
-
-
-
