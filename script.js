@@ -1,33 +1,68 @@
 var APIKey = "82fcfb57b845804458f56e1829f74f3b"; //create variable to store API key
-var city="Los Angeles";                         //create variable to store user input for the city
+var city="London";                         //create variable to store user input for the city
 var queryUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;  //construct a query URL "https://openweathermap.org/current#name" using string concatenation to store the OW current weather data URL and the necessary variables
 var searchInputEl = document.querySelector("#searchBar");
 var todayContainer = document.querySelector("#today-city-weather-container");
 var forcastContainer = document.querySelector("#forcast-container");
 var buttonElm = document.getElementById("search")
 
+$.ajax({
+    url: queryUrl,
+    method: "GET"
+}).then(function(response){
+    console.log(queryUrl);
+    console.log(response);
+
+    $(".city").html("<h1>" + response.name + "Weather Details</h1>");
+    $(".temp").text("Temperature(F): " + response.main.temp);
+    $(".humidity").text("Humidity: " + response.main.humidity);
+    var windSpeed = response.wind.speed;
+    $(".wind").html("<p>Wind Speed: " + windSpeed + "</p>" );
+    
+    console.log("Temperature(K): " + response.main.temp);
+    console.log("Humidity: " + response.main.humidity);
+    console.log("Wind Speed: " + response.wind.speed);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Request for data from OpenWeather API
-fetch(queryUrl)                                 //call the Fetch API to pass the query/request URL in as a parameter
+/*fetch(queryUrl)                                 //call the Fetch API to pass the query/request URL in as a parameter
     .then(function(response){
         return response.json();                 //the original response is from http, we use json()to extract that response
-    })
-    .then(function(data){                       //need to do something to the data
+    }).then(function(data){                       //need to do something to the data
         console.log(data);
         var list = data.list;                   //get a list from the data
 
-        for(var item of list){
+        for(var item of list){                  //loop through the list, get the following data
             var main = item.main;
             var temp = main.temp;
-            var day = item.dt_txt;
+            var day = item.dt;
+            var wind = item.wind;
+            var humidity = main.humidity;
         }
     });
+    */
 
-// to retrieve user input from the text box
-/*var searchBar = document.getElementById("searchBar"); 
-searchBar = addEventListener("keyup", e =>{//add a keyup event listener to retrieve the input, use arrow function for the callback, this callback function has a parameter e, the event object.
-    var searchString = e.target.value; //
-}); 
-console.log(searchString);*/
+
+
 
 
 

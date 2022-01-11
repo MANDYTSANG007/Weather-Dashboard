@@ -37,13 +37,16 @@
                 </div>
         </main>
 <!--This section presents today's weather-->
-                <div class="col-md-12" style="height:200px">
-                    <h4>Today's City Weather </h4>
+                <div class="col-md-12" style="height:200px"></div>
                     <div id="today-city-weather-container">
-                        <p id="current-date"><small class="text-muted">Temperature:</small></p>
+                        <div class="city"></div>
+                        <div class="temp"></div>
+                        <div class="humidity"></div>
+                        <div class="wind"></div>
+                        <!--<p id="current-date"><small class="text-muted">Temperature:</small></p>
                         <p id="current-temp"><small class="text-muted">Humidity:</small></p>
                         <p id="current-humidity"><small class="text-muted">Wind Speed:</small></p>
-                        <p id="current-UVIndex"><small class="text-muted">UV Index:</small></p>
+                        <p id="current-UVIndex"><small class="text-muted">UV Index:</small></p>-->
                     </div>
 <!--This section presents the next five-day weather forcast-->
                     <h4>Five-Day Forcast</h4>
@@ -90,7 +93,7 @@
             </div>
     </section>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="/Users/hmtsang/Desktop/UCBerkeleryBootcamp/Homework/Weather-Dashboard/script.js"></script>
 </body>
