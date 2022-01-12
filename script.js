@@ -1,9 +1,11 @@
 var APIKey = "82fcfb57b845804458f56e1829f74f3b";                             //create variable to store API key                                              
 
 var cityInputEl = document.querySelector("#city-input");
+var cityList = document.querySelector("#city-list");
 var todayContainer = document.querySelector("#city-weather-container");
 var forcastContainer = document.querySelector("#forcast-container");
 var buttonElm = document.getElementById("search-city")
+var cities = [];
 
 function searchCity(city){
     var queryUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;  //construct a query URL "https://openweathermap.org/current#name" using string concatenation to store the OW current weather data URL and the necessary variables
@@ -34,8 +36,6 @@ $.ajax({
     function UVIndex(lat,lon){
         var lat = latitude;
         var lon = longtitude;
-        
-        //queryUrlUVI = "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}";
         queryUrlUVI = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=hourly" + "&appid=" + APIKey; //URL for UV Index
         $.ajax({
             url: queryUrlUVI,
@@ -46,27 +46,52 @@ $.ajax({
             $(".UVIndex").append(uvIndex)
             uvIndex.text("UV Index: " + response.current.uvi)
             console.log("UV Index: " + response.current.uvi);
-            
         })
     }
-
     console.log("Temperature(K): " + response.main.temp);
     console.log("Humidity: " + response.main.humidity);
     console.log("Wind Speed: " + response.wind.speed);
     
     UVIndex();
-   
 });
 }
 
 $("#search-city").on("click", function(event){                              //event handler for user searching the search-city button
     event.preventDefault();                                                 //prevent the button from trying to submit the request
     var inputCity = $("#city-input").val().trim();                          //Store the city name
-
     searchCity(inputCity);
+
+    cities.push(cityText);                                                  //Add new cityText to cities array, clear the input
+    cityInputEl.value = "";
+
+    storeCities();
+    renderCityList();
 });
 
+function renderCityList(){                                                  //create city list search history
+    cityList.innerHTML = "";
 
+    for (var i = 0; i < cities.length; i++){                                //render a new li for each city
+        var city = cities[i];
+        var li = document.createElement("li");
+        li.textContent = city;
+        li.setAttribute("data-index", i);
+        cityList.appendChild(li);
+    }
+}
+
+function init() {                                                           //store cities from localStorage and retrieve it using getItem
+    var storedCities = JSON.parse(localStorage.getItem("cities"));
+
+    if (storedCities !== null) {                                            //if cities were retrieved from localStorage, update the cities array
+        cities = storedCities;
+    }
+    renderCityList();
+}
+
+function storeCities() {                                                    //store an array using localStorage
+    localStorage.setItem("cities", JSON.stringify(cities));
+}
 
 
 
