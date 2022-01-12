@@ -46,6 +46,14 @@ function searchCity(city) {
                 $(".UVIndex").append(uvIndex)
                 uvIndex.text("UV Index: " + response.current.uvi)
                 console.log("UV Index: " + response.current.uvi);
+
+                if (response.current.uvi <= 2){
+                    uvIndex.css({"background-color": "green"})
+                }else if (response.current.uvi >= 3 && response.current.uvi <= 7){
+                    uvIndex.css({"background-color": "orange"})
+                }else if (response.current.uvi >= 8 ){
+                    uvIndex.css({"background-color": "red"})
+                }
             })
         }
         console.log("Temperature(K): " + response.main.temp);
