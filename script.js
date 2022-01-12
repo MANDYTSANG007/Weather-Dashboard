@@ -61,8 +61,8 @@ $("#search-city").on("click", function(event){                              //ev
     var inputCity = $("#city-input").val().trim();                          //Store the city name
     searchCity(inputCity);
 
-    cities.push(cityText);                                                  //Add new cityText to cities array, clear the input
-    cityInputEl.value = "";
+    cities.push(inputCity);                                                  //Add new cityText to cities array, clear the input
+    $("#city-input").value = "";
 
     storeCities();
     renderCityList();
