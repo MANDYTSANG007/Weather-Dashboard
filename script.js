@@ -1,31 +1,69 @@
-var APIKey = "82fcfb57b845804458f56e1829f74f3b";                             //create variable to store API key
-var city="London";                                                           //create variable to store user input for the city
-var queryUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;  //construct a query URL "https://openweathermap.org/current#name" using string concatenation to store the OW current weather data URL and the necessary variables
+var APIKey = "82fcfb57b845804458f56e1829f74f3b";                             //create variable to store API key                                              
+
 var cityInputEl = document.querySelector("#city-input");
 var todayContainer = document.querySelector("#city-weather-container");
 var forcastContainer = document.querySelector("#forcast-container");
 var buttonElm = document.getElementById("search-city")
+
+function searchCity(city){
+    var queryUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;  //construct a query URL "https://openweathermap.org/current#name" using string concatenation to store the OW current weather data URL and the necessary variables
 
 $.ajax({
     url: queryUrl,
     method: "GET"
 }).then(function(response){
     console.log(response);
-    /*$("#city-weather-container").empty();                                   //empty the contents of the city-weather-container, append the new city content
-    var newData =$("<main>");*/
+    //$("#city-weather-container").empty();                                   //empty the contents of the city-weather-container, append the new city content
+    //var newData =$("<main>");
 
     console.log(queryUrl);
     console.log(response);                                                  //print the object to console
 
-    $(".city").html("<h1>" + response.name + " Weather Details</h1>");      //construct HTML containing current city information
-    $(".temp").text("Temperature(F): " + response.main.temp);
+    var city = response.name;
+    $(".city").html("<h1>" + city + " Weather Details</h1>");               //construct HTML containing current city information
+    
+    $(".temp").text("Temperature(K): " + response.main.temp);
+    
     $(".humidity").text("Humidity: " + response.main.humidity);
+    
     var windSpeed = response.wind.speed;
     $(".wind").html("<p>Wind Speed: " + windSpeed + "</p>" );
     
+    var latitude = response.coord.lat;                                      //get UV Index from onecall URL
+    var longtitude = response.coord.lon;
+    function UVIndex(lat,lon){
+        var lat = latitude;
+        var lon = longtitude;
+        
+        //queryUrlUVI = "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}";
+        queryUrlUVI = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=hourly" + "&appid=" + APIKey; //URL for UV Index
+        $.ajax({
+            url: queryUrlUVI,
+            method: "GET"
+        }).then(function(response){
+            console.log(response);
+            var uvIndex = $("<main>");
+            $(".UVIndex").append(uvIndex)
+            uvIndex.text("UV Index: " + response.current.uvi)
+            console.log("UV Index: " + response.current.uvi);
+            
+        })
+    }
+
     console.log("Temperature(K): " + response.main.temp);
     console.log("Humidity: " + response.main.humidity);
     console.log("Wind Speed: " + response.wind.speed);
+    
+    UVIndex();
+   
+});
+}
+
+$("#search-city").on("click", function(event){                              //event handler for user searching the search-city button
+    event.preventDefault();                                                 //prevent the button from trying to submit the request
+    var inputCity = $("#city-input").val().trim();                          //Store the city name
+
+    searchCity(inputCity);
 });
 
 
@@ -43,9 +81,7 @@ $.ajax({
 
 
 
-
-
-
+//use geocode latitude and longtitude and one call combination to get UI index
 
 //Request for data from OpenWeather API
 /*fetch(queryUrl)                                 //call the Fetch API to pass the query/request URL in as a parameter
