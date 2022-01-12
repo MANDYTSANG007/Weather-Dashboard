@@ -3,7 +3,7 @@ var APIKey = "82fcfb57b845804458f56e1829f74f3b";                             //c
 var cityInputEl = document.querySelector("#city-input");
 var cityList = document.querySelector("#city-list");
 var todayContainer = document.querySelector("#city-weather-container");
-var forcastContainer = document.querySelector("#forcast-container");
+var forecastContainer = document.querySelector("#forecast-container");
 var buttonElm = document.getElementById("search-city")
 var cities = [];
 
@@ -60,6 +60,8 @@ $("#search-city").on("click", function(event){                              //ev
     event.preventDefault();                                                 //prevent the button from trying to submit the request
     var inputCity = $("#city-input").val().trim();                          //Store the city name
     searchCity(inputCity);
+
+    forecast(inputCity);                                                    //get the 5 day forecast
 
     cities.push(inputCity);                                                  //Add new cityText to cities array, clear the input
     $("#city-input").value = "";
