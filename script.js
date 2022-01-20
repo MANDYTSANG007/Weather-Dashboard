@@ -1,13 +1,65 @@
 var APIKey = "82fcfb57b845804458f56e1829f74f3b";                             //create variable to store API key                                              
 
-var cityInputEl = document.querySelector("#city-input");
-var cityList = document.querySelector("#city-list");
-var todayContainer = document.querySelector("#city-weather-container");
-var forecastContainer = document.querySelector("#forecast-container");
-var buttonElm = document.getElementById("search-city")
+//var cityInputEl = document.querySelector("#city-input");
+//var cityList = document.querySelector("#city-list");
+//var todayContainer = document.querySelector("#city-weather-container");
+//var forecastContainer = document.querySelector("#forecast-container");
+//var buttonElm = document.getElementById("search-city")
 var cities = [];
 
-function searchCity(city) {
+function searchCity(city, cityList) {
+    createList(cityList);
+
+    var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;  //construct a query URL "https://openweathermap.org/current#name" using string concatenation to store the OW current weather data URL and the necessary variables
+
+    var queryUrlForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
+
+    var latitude;                       //will define later
+    var longtitude;
+
+    $.ajax({
+        url: queryUrl,
+        method: "GET"
+    }).then(function(responose){        //store all retrieved data inside an obj called "response"
+        console.log(queryUrl);          //log queryUrl
+        console.log(response);          //log response obj
+
+
+
+
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*function searchCity(city) {
     var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;  //construct a query URL "https://openweathermap.org/current#name" using string concatenation to store the OW current weather data URL and the necessary variables
 
     $.ajax({
@@ -20,13 +72,17 @@ function searchCity(city) {
 
         console.log(queryUrl);
         console.log(response);                                                  //print the object to console
-
+       
         var city = response.name;
+        
         $(".city").html("<h1>" + city + " Weather Details</h1>");               //construct HTML containing current city information
-
+        
         $(".temp").text("Temperature(K): " + response.main.temp);
 
         $(".humidity").text("Humidity: " + response.main.humidity);
+
+
+       
 
         var windSpeed = response.wind.speed;
         $(".wind").html("<p>Wind Speed: " + windSpeed + "</p>");
@@ -63,7 +119,7 @@ function searchCity(city) {
         UVIndex();
     });
 }
-
+*/
 $("#search-city").on("click", function (event) {                              //event handler for user searching the search-city button
     event.preventDefault();                                                 //prevent the button from trying to submit the request
     var inputCity = $("#city-input").val().trim();                          //Store the city name
@@ -123,9 +179,12 @@ function fiveDayForecast(city) {
 
         str = [1, 2, 3, 4, 5]
         for (i = 0; i < str.length; i++) {
+            
+
             var forecastDate = $("<div>");
             forecastDate.text(moment().add(i + 1, "days").format("MM/DD/YYYY"));
             $("#" + str[i]).append(forecastDate);
+
 
             var tempForecast = $("<div>");
             $("#" + str[i]).append(tempForecast);
@@ -140,6 +199,11 @@ function fiveDayForecast(city) {
             var humidityForecast = $("<div>");                                      // get humidity forecast
             $("#" + str[i]).append(humidityForecast);
             humidityForecast.text("Humidity: " + response.list[i].main.humidity);
+
+            /*var forecastIcon = document.createElement("img");
+            forecastIcon.setAttribute("src", "https://openweathermap.org/img/w" + response.data.list[i].weather[0].icon + "@2x.png");
+            forecastIcon.setAttribute("alt", response.data.list[i].weather[0].description);
+            $("#" + str[i]).appendChild(forecastIcon);*/
         }
     })
 };
