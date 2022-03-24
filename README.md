@@ -34,9 +34,9 @@ When it runs on a browser, a search box will be displayed asking the user to mak
 
 * **Mandy Tsang** 
 
-- [Portfolio](https://mandytsang007.github.io/HMT-Portfolio/)
+- [Portfolio](https://mandytsang007.github.io/new-portfolio/)
 - [Github](https://github.com/MANDYTSANG007)
-- [LinkedIn](https://www.linkedin.com/in/mandy-tsang-896b2682)
+- [LinkedIn](https://www.linkedin.com/in/man-tsang-64308b22a/)
 
 
 ## License

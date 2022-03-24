@@ -22,7 +22,7 @@
             <div class="col-md-12">
                 <div>Search for a city<br>
                     <input type="text" id="city-input" />
-                    <button type="submit" id="search-city"><i class="fa fa-search"></i></button>
+                    <button type="submit" id="search-button"><i class="fa fa-search"></i></button>
                 </div>
 <!--This section displays users' search history-->
                 <div id="search-history" class="d-flex flex-column">
@@ -31,16 +31,19 @@
        
 <!--This section presents today's weather-->
                 <div class="col-md-12" style="height:200px"></div>
-                    <main id="city-weather-container">
-                        <div id="current-date"></div>
-                        <div class="moment"></div>
-                        <div class="city"></div>
-                        <div class="temp"></div>
-                        <div class="humidity"></div>
-                        <div class="wind"></div>
-                        <div class="UVIndex"></div>
-                        <div class="weatherIcon"></div>
-                    </main>
+                    <div id="current-weather">
+                        <div id="city-name"></div>
+                        <div id="current-icon"></div>
+                        <p id="current-temp"></p>
+                        <p id="current-humidity"></p>
+                        <p id="current-wind"></p>
+                        <p id="current-UVIndex"></p>
+
+
+
+                        
+                    
+                    </div>
 <!--This section presents the next five-day weather forecast-->
                     <h4>Five-Day Forecast</h4>
                     <div class="col-md-12"  id="forecast-container"></div>
