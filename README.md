@@ -28,7 +28,7 @@ When it runs on a browser, a search box will be displayed asking the user to mak
 
 ## Design Layout
 
-![alt text](WeatherDashboardScreenshot.png)
+Coming soon!
 
 ## Authors
 
