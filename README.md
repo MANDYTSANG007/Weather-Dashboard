@@ -1,11 +1,11 @@
 # Weather-Dashboard
 
-The purpose of this Weather Dashboard is to provide travelers a weather outlook of the cities that they have selected. This application is built with HTML, CSS, JavaScript, and also powered by jQuery and Bootstrap. Travelers are able to do a global city search. This application utilizes a third-party API, OpenWeatherMap, to retrieve weather data for cities. LocalStorage feature is also incorporated in this application so that users are able to see their search history on the browser. 
+The purpose of this Weather Dashboard is to provide travelers a weather outlook of the cities that they have selected. This application is built with HTML, CSS, JavaScript, and also powered by jQuery and Bootstrap. Travelers are able to do a global city search. This application utilizes a third-party API and OpenWeatherMap, to retrieve weather data for cities. Local storage feature is also incorporated in this application so that users are able to see their search history on the browser. 
 
 
 ## Getting Started
 
-When it runs on a browser, a search box will be displayed asking the user to make a city search. Once it is entered, the city name, the temperature, the humidity, the wind speed, and the UV index of the current date will be displayed in addition to the five-day weather forecast for that city. The search history will be stored in a localStorage so that users can easily access their previous search. The UV Index is color coded to indicate whether the conditions are favorable, moderate, or severe. 
+When it runs on a browser, a search box will be displayed asking the user to make a city search. Once it is entered, the city name, the temperature, the humidity, the wind speed, and the UV index of the current date will be displayed in addition to the five-day weather forecast for that city. The search history will be stored in a local storage so that users can easily access their previous search. The UV Index is color coded to indicate whether the conditions are favorable, moderate, or severe. 
 
 
 
@@ -18,7 +18,7 @@ When it runs on a browser, a search box will be displayed asking the user to mak
 * [Moment.js](https://momentjs.com/docs/)
 * [jQuery User Interface](https://jqueryui.com)
 * [Bootstrap](https://getbootstrap.com)
-* [US Enviromnetal Protection Agency](https://www.epa.gov/sunsafety/uv-index-scale-0)
+* [US Enviromental Protection Agency](https://www.epa.gov/sunsafety/uv-index-scale-0)
 
 
 ## Deployed Link
@@ -32,7 +32,7 @@ Coming soon!
 
 ## Authors
 
-* **Mandy Tsang** 
+**Mandy Tsang** 
 
 - [Portfolio](https://mandytsang007.github.io/new-portfolio/)
 - [Github](https://github.com/MANDYTSANG007)
