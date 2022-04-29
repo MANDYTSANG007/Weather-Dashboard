@@ -23,7 +23,7 @@ When it runs on a browser, a search box will be displayed asking the user to mak
 
 ## Deployed Link
 
-* [Deployed Link to Live Site](https://mandytsang007.github.io/Weather-Dashboard/)
+* [Link to Live Site](https://mandytsang007.github.io/Weather-Dashboard/)
 * [Link to Github](https://github.com/MANDYTSANG007/Weather-Dashboard)
 
 ## Design Layout
