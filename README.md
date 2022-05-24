@@ -14,7 +14,6 @@ When it runs on a browser, a search box will be displayed asking the user to mak
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-* [w3schools](https://www.w3schools.com/js/default.asp)
 * [Moment.js](https://momentjs.com/docs/)
 * [jQuery User Interface](https://jqueryui.com)
 * [Bootstrap](https://getbootstrap.com)
