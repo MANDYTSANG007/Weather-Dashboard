@@ -17,7 +17,7 @@ When it runs on a browser, a search box will be displayed asking the user to mak
 * [Moment.js](https://momentjs.com/docs/)
 * [jQuery User Interface](https://jqueryui.com)
 * [Bootstrap](https://getbootstrap.com)
-* [US Enviromental Protection Agency](https://www.epa.gov/sunsafety/uv-index-scale-0)
+* [United States Enviromental Protection Agency](https://www.epa.gov/sunsafety/uv-index-scale-0)
 
 
 ## Deployed Link
