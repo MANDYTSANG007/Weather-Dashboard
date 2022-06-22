@@ -21,15 +21,17 @@
         <aside id="side-bar" class="col-md-3 col-sm-12 d-flex flex-column justify-content-start ">
             <h3 class="text-light">City Search:</h3>
             
-            <form class="input-group">
-                <input type="text" class="form-control" placeholder="Enter a city name" aria-label="City search" aria-describedby="basic-addon1">
-                <button class="btn btn-primary text-light" type="submit">Search</button>
+            <form id="search-form" class="input-group">
+                <input id="search-box" type="text" class="form-control" placeholder="Enter a city name" aria-label="City search" aria-describedby="basic-addon1">
+                <button id="search-btn" class="btn btn-primary text-light" type="submit">Search</button>
             </form>
+            
+            <ul id="search-history" class="list-group pb-3"></ul>
         </aside>
 
         <section class="col-md-9 col-sm-12 d-flex flex-column justify-content-start">
             <div id="card" class="row card mt-3 mx-1">
-                <div id="card1" class="card-body d-flex flex-column ">
+                <div id="current" id="card1" class="card-body d-flex flex-column ">
                     <h2 class="card-title">Today's Weather</h2>
                     <p class="card-subtitle"> Data </p>
                 </div>
