@@ -1,8 +1,10 @@
+
 function searchCity(city){
     $.ajax({
         url: "https://api.openweathermap.org/data/2.5/onecall?"
             + "lat=" + city.lat
             + "&lon=" + city.lon
+            + "&units=metric"
             + "&exclude=hourly"
             + "&appid=82fcfb57b845804458f56e1829f74f3b",
         method: "GET",
@@ -16,13 +18,13 @@ function displayToday(response, city) {
     const current = response.current;
     const icon = getIcon(current.weather[0].icon, current.weather[0].description);
     const cityName = $('<h2>').text(city.name).attr('id', 'city-name').prepend(icon);
-    const temperature = $('<p>').text('Temperature: ' + current.temp);
+    const temperature = $('<p>').text('Temperature: ' + current.temp + current.temp);
     const humidity = $('<p>').text('Humidity: ' + current.humidity + '%');
     const wind = $('<p>').text('Wind Speed: ' + current.wind_speed);
-
+    const date = $('<h2>').text( moment().format('dddd, MMMM Do YYYY')).attr('id', 'date');
 
     $('#current').html('');
-    $('#current').append(cityName, temperature, humidity, wind);
+    $('#current').append(cityName, temperature, humidity, wind, date);
 }
 
 $('#search-form').on('submit', function(event) {
@@ -31,7 +33,7 @@ $('#search-form').on('submit', function(event) {
     getCoordinates(cityQuery);
 });
 
-function getCoordinates(cityQUery) {
+function getCoordinates(cityQuery) {
     if (!cityQuery) {
         cityQuery = "Los Angeles"
     }
