@@ -8,12 +8,75 @@ function searchCity(city){
         method: "GET",
     }).then(function(response) {
         console.log(response);
+        displayToday(response, city);
     });
 }
 
+function displayToday(response, city) {
+    const current = response.current;
+    const icon = getIcon(current.weather[0].icon, current.weather[0].description);
+    const cityName = $('<h2>').text(city.name).attr('id', 'city-name').prepend(icon);
+    const temperature = $('<p>').text('Temperature: ' + current.temp);
+    const humidity = $('<p>').text('Humidity: ' + current.humidity + '%');
+    const wind = $('<p>').text('Wind Speed: ' + current.wind_speed);
 
 
+    $('#current').html('');
+    $('#current').append(cityName, temperature, humidity, wind);
+}
 
+$('#search-form').on('submit', function(event) {
+    event.preventDefault();
+    cityQuery = $('#search-box').val();
+    getCoordinates(cityQuery);
+});
+
+function getCoordinates(cityQUery) {
+    if (!cityQuery) {
+        cityQuery = "Los Angeles"
+    }
+    $.ajax({
+        url: "http://api.openweathermap.org/geo/1.0/direct?"
+            + "q=" + cityQuery
+            + "&limit=" + 1
+            + "&appid=82fcfb57b845804458f56e1829f74f3b",
+        method: "GET",
+    }).then(function(response) {
+        console.log(response[0]);
+
+        if (response.length === 0) {
+            return alert("City not found, please try again!");
+        }
+        city = {
+            name: response[0].name,
+            state: response[0].state,
+            country: response[0].country,
+            lat: response[0].lat,
+            lon: response[0].lon,
+        }
+        searchCity(city);
+    })
+}
+
+function getIcon(iconCode, description) {
+    return '<img alt=""' + description + '"src=" http://openweathermap.org/img/wn/' + iconCode + '"10d@2x.png">'
+}
+
+function makeActive(button) {
+    button.addClass('active');
+    button.siblings().removeClass('active');
+}
+
+function init() {
+    let searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+    if (!searchHistory) {
+        searchCity({lat: 34.0522, lon: -118.2437, name: "Los Angeles"});
+    } else {
+        searchCity(searchHistory[0]);
+    }
+}
+
+init();
 
 // var APIKey = "82fcfb57b845804458f56e1829f74f3b";                             //create variable to store API key                                              
 
