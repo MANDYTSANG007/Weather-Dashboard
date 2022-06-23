@@ -11,6 +11,7 @@ function searchCity(city){
     }).then(function(response) {
         console.log(response);
         displayToday(response, city);
+        displayForecast(response);
     });
 }
 
@@ -18,8 +19,8 @@ function displayToday(response, city) {
     const current = response.current;
     const icon = getIcon(current.weather[0].icon, current.weather[0].description);
     const cityName = $('<h2>').text(city.name).attr('id', 'city-name').prepend(icon);
-    const temperature = $('<p>').text('Temperature: ' + current.temp + current.temp);
-    const humidity = $('<p>').text('Humidity: ' + current.humidity + '%');
+    const temperature = $('<p>').text('Temperature: ' + current.temp + " °C");
+    const humidity = $('<p>').text('Humidity: ' + current.humidity + ' %');
     const wind = $('<p>').text('Wind Speed: ' + current.wind_speed);
     const date = $('<h2>').text( moment().format('dddd, MMMM Do YYYY')).attr('id', 'date');
 
@@ -32,6 +33,21 @@ $('#search-form').on('submit', function(event) {
     cityQuery = $('#search-box').val();
     getCoordinates(cityQuery);
 });
+
+function displayForecast(response) {
+    const daily = response.daily;
+
+    $('#forecast').html('')
+    for (var i = 1; i < 6; i++) {
+        const date = $('<h5>').text(moment.unix(daily[i].dt).format('MM/DD'));
+        const icon = getIcon(daily[i].weather[0].icon, daily[i].weather[0].description);
+        const temperature = $('<p>').text('Temp: ' + daily[i].temp.day + " °C");
+        const humidity = $('<p>').text('Humidity: ' + daily[i].humidity + ' ' + '%');
+        let card = $('<div>').append(date, icon, temperature, humidity);
+        card.attr('class', 'card text-white mr-3 col-lg-2 col-md-3 col-sm-4');
+        $('#forecast').append(card);
+    }
+}
 
 function getCoordinates(cityQuery) {
     if (!cityQuery) {
@@ -60,8 +76,11 @@ function getCoordinates(cityQuery) {
     })
 }
 
+// function getIcon(iconCode, description) {
+//     return '<img alt=""' + description + '"src=" https://openweathermap.org/img/wn/' + iconCode + '"10d@2x.png">'
+// }
 function getIcon(iconCode, description) {
-    return '<img alt=""' + description + '"src=" http://openweathermap.org/img/wn/' + iconCode + '"10d@2x.png">'
+    return "<img alt=''" + description + "' src='https://openweathermap.org/img/wn/" + iconCode + "@2x.png'>"
 }
 
 function makeActive(button) {
