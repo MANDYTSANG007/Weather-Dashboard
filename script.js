@@ -4,7 +4,7 @@ function searchCity(city){
         url: "https://api.openweathermap.org/data/2.5/onecall?"
             + "lat=" + city.lat
             + "&lon=" + city.lon
-            + "&units=metric"
+            + "&units=imperial"
             + "&exclude=hourly"
             + "&appid=82fcfb57b845804458f56e1829f74f3b",
         method: "GET",
@@ -19,9 +19,9 @@ function displayToday(response, city) {
     const current = response.current;
     const icon = getIcon(current.weather[0].icon, current.weather[0].description);
     const cityName = $('<h2>').text(city.name).attr('id', 'city-name').prepend(icon);
-    const temperature = $('<p>').text('Temperature: ' + current.temp + " °C");
+    const temperature = $('<p>').text('Temperature: ' + current.temp + " °F");
     const humidity = $('<p>').text('Humidity: ' + current.humidity + ' %');
-    const wind = $('<p>').text('Wind Speed: ' + current.wind_speed);
+    const wind = $('<p>').text('Wind Speed: ' + current.wind_speed + " mph");
     const date = $('<h2>').text( moment().format('dddd, MMMM Do YYYY')).attr('id', 'date');
 
     $('#current').html('');
@@ -41,7 +41,7 @@ function displayForecast(response) {
     for (var i = 1; i < 6; i++) {
         const date = $('<h5>').text(moment.unix(daily[i].dt).format('MM/DD'));
         const icon = getIcon(daily[i].weather[0].icon, daily[i].weather[0].description);
-        const temperature = $('<p>').text('Temp: ' + daily[i].temp.day + " °C");
+        const temperature = $('<p>').text('Temp: ' + daily[i].temp.day + " °F");
         const humidity = $('<p>').text('Humidity: ' + daily[i].humidity + ' ' + '%');
         let card = $('<div>').append(date, icon, temperature, humidity);
         card.attr('class', 'card text-white mr-3 col-lg-2 col-md-3 col-sm-4');
@@ -73,6 +73,8 @@ function getCoordinates(cityQuery) {
             lon: response[0].lon,
         }
         searchCity(city);
+        saveHistory(city);
+        showHistory();
     })
 }
 
@@ -87,6 +89,55 @@ function makeActive(button) {
     button.addClass('active');
     button.siblings().removeClass('active');
 }
+
+function saveHistory(city) {
+    let getHistory = JSON.parse(localStorage.getItem('getHistory'));
+    if (!getHistory) {
+        getHistory = [];
+    }
+
+    const isHistory = (element) => element.name === city.name;
+    if (getHistory.findIndex(isHistory) > 0) {
+        getHistory.splice(getHistory.findIndex(isHistory), 1);
+        getHistory.unshift(city);
+    } else if (getHistory.findIndex(isHistory) !== 0 ) {
+        getHistory.unshift(city);
+    }
+
+    while (getHistory.length > 10 ) {
+        getHistory.pop();
+    }
+
+    localStorage.setItem('getHistory', JSON.stringify(getHistory));
+};
+
+function showHistory() {
+    let getHistory = JSON.parse(localStorage.getItem('getHistory'));
+
+    if (!getHistory) {
+        getHistory = [];
+    }
+
+    $('#get-history').html('');
+    $.each(getHistory, function(i, input) {
+        const li = $('<li>').text(input.name);
+        li.attr('class', 'list-group-item');
+        li.attr('data-index', i);
+        $('#get-history').append(li);
+    })
+    makeActive($('#get-history :first-child'));
+}
+
+$('#get-history').on('click', 'li', function(event) {
+    event.preventDefault();
+    const button = $(this);
+    const index = button.attr('data-index');
+    const getHistory = JSON.parse(localStorage.getItem('getHistory'));
+    const city = getHistory[index];
+
+    searchCity(city);
+    makeActive(button);
+})
 
 function init() {
     let searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
