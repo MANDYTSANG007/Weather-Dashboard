@@ -18,6 +18,7 @@ function searchCity(city){
 function displayToday(response, city) {
     const current = response.current;
     const icon = getIcon(current.weather[0].icon, current.weather[0].description);
+    
     const cityName = $('<h2>').text(city.name).attr('id', 'city-name').prepend(icon);
     const temperature = $('<p>').text('Temperature: ' + current.temp + " °F");
     const humidity = $('<p>').text('Humidity: ' + current.humidity + ' %');
@@ -111,6 +112,27 @@ function saveHistory(city) {
     localStorage.setItem('getHistory', JSON.stringify(getHistory));
 };
 
+// function showHistory() {
+//     let getHistory = JSON.parse(localStorage.getItem('getHistory'));
+
+//     if (!getHistory) {
+//         getHistory = [];
+//     }
+
+//     $('#get-history').html('');
+//     $.each(getHistory, function(i, input) {
+//         const $btn = $('<input type="button" value="delete" class="btn btn-outline-secondary" id="delete"/>');
+
+//         const li = $('<li>').append(input.name, $btn);
+
+//         li.attr('class', 'list-group-item');
+//         li.attr('data-index', i);
+//         $('#get-history').append(li);
+//     })
+//     makeActive($('#get-history :first-child'));
+// }
+
+
 function showHistory() {
     let getHistory = JSON.parse(localStorage.getItem('getHistory'));
 
@@ -120,14 +142,65 @@ function showHistory() {
 
     $('#get-history').html('');
     $.each(getHistory, function(i, input) {
-        const li = $('<li>').text(input.name);
+        const $btn = $('<input type="button" value="delete" key="'+key+'" class="btn btn-outline-secondary" id="delete"/>');
+
+        const li = $('<li>').append(input.name, $btn);
+
         li.attr('class', 'list-group-item');
         li.attr('data-index', i);
         $('#get-history').append(li);
     })
     makeActive($('#get-history :first-child'));
+
+    if (window.localStorage) {
+        var key, value;
+        for (var i=0; i<localStorage.length; i++) {
+            key = localStorage.key(i);
+            value = localStorage.getItem(key);
+        }
+    }
+    $('#get-history').on('click', '#delete', function(el) {
+        const getHistory = JSON.parse(localStorage.getItem('getHistory'));
+        $(this).closest('li').remove();
+        var key = $(this).attr('key');
+        localStorage.removeItem(key);
+        // $('#get-history').listview('refresh');
+        localStorage.setItem('getHistory', JSON.stringify(getHistory));
+    })
+
+//this works by deleting the whole getHistory list. but still, it only works on the first button. 
+    // $('#delete').click(function(index){
+    //     const getHistory = JSON.parse(localStorage.getItem('getHistory')).splice(index, 1);
+    //     localStorage.setItem('getHistory',JSON.stringify(getHistory));
+    // })
+
+    // let ele = getHistory.spilt(',');
+    // const city = ele.indexOf(1);
+    // ele.splice(city, 1);
+
+    // $('#delete').click(function(){
+    // const getHistory = JSON.parse(localStorage.getItem('getHistory'));
+    // getHistory.splice(index, 1);
+    // localStorage.setItem('getHistory',JSON.stringify(getHistory));
+    // })
+   
+    // for (var i=0; i<getHistory.length; i++){
+    //     getHistory[i] = array[i]["i"];
+    // }
+    // $('#delete').click(function(){
+    //     alert('hi');
 }
 
+    // $('#delete').click(function() {
+    //     localStorage.removeItem(i);
+    // })
+    // $('#delete').click(function() {
+    //     localStorage.removeItem('getHistory');
+    // })
+
+//Kai's recommendation: get item first --> make whatever change you want in the array...and then set item...
+
+//click on the city to display the city's weather data 
 $('#get-history').on('click', 'li', function(event) {
     event.preventDefault();
     const button = $(this);
@@ -138,6 +211,21 @@ $('#get-history').on('click', 'li', function(event) {
     searchCity(city);
     makeActive(button);
 })
+
+//click on the delete button to remove city from the get-history array
+// $('#get-history').on('click', '$btn', function(event) {
+//     event.preventDefault();
+    // const getHistory = JSON.parse(localStorage.getItem('getHistory'));
+    // let ele = getHistory.spilt(',');
+    // const city = ele.indexOf(1);
+    // ele.splice(city, 1);
+    // localStorage.removeItem(ele);
+    // var index = getHistory.findIndex((element) => element.name === city.name);
+    // getHistory.splice(index, 1);
+    // var newList = ele.join(',');
+    // localStorage.setItem('newList', newList);
+    // localStorage.setItem('newList', JSON.stringify(getHistory));
+// })
 
 function init() {
     let searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
