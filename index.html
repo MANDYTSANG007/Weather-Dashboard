@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Island+Moments&family=Noto+Sans+HK&family=Tangerine:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-
+    <link rel ="icon" href="sunnyDay.png" type="image/icon type">
     <title>Weather Forecast</title>
 </head>
 
-<body class="container-fluid bg-dark">
-    <header id="top" class="d-flex justify-content-center bg-dark">
+<body id="bg" class="container-fluid">  
+    <header id="top" class="d-flex justify-content-center"> 
         <h1 class="text-light">Weather Forecast</h1>
     </header>
     <main id="dashboard" class="d-flex flex-row flex-wrap mh-100">
@@ -30,7 +31,7 @@
         </aside>
 
         <section class="col-md-9 col-sm-12 d-flex flex-column justify-content-start">
-            <div id="forecast-card" class="row card mt-3 mx-1">
+            <div id="forecast-card" class="row card mt-0 mx-1">
                 <div id="current" class="card-body d-flex flex-column ">
                     <h2 class="card-title">Today's Weather</h2>
                     <p class="card-subtitle"> Data </p>
@@ -41,119 +42,13 @@
                 <h3 id="forecast-header">5-Day Forecast:</h3>
             </div>
 
-            <div id="forecast" class="d-flex flex-row flex-wrap justify-content-center"></div>
+            <div id="forecast" class="d-flex flex-row flex-wrap justify-content-between mt-2 mx-1"></div>
         </section>
 
     </main>
 </body>
-
-
-<!-- <body>
-    <section>
-        <h1> Weather Forecast</h1> -->
-<!--This section invites users to search for a city-->
-        <!-- <p id="inputContainer"> City: <input type="text" id="city-input" /></p>
-        <button id="submitButton"> Submit </button>
-        <h2 id="cityName"> Los Angeles </h2>
-    </section>
-    <div id="weatherContainer">
-        <div id="iconsContainer">
-            <div class="icons">
-                <p class="weather" id="day1"></p>
-                <div class="image">
-                    <img src="logo-grape.png" class="imgClass" id="img1">
-                    <p class="minValues" id="day1Min"> loading... </p>
-                <p class="maxValues" id="day1Max"> loading... </p>
-                </div>
-                
-            </div>
-            <div class="icons">
-                <p class="weather" id="day2"></p>
-                <div class="image">
-                    <img src="logo-grape.png" class="imgClass" id="img2">
-                </div>
-                <p class="minValues" id="day2Min"> loading... </p>
-                <p class="maxValues" id="day2Max"> loading... </p>
-            </div>
-            <div class="icons">
-                <p class="weather" id="day3"></p>
-                <div class="image">
-                    <img src="logo-grape.png" class="imgClass" id="img3">
-                </div>
-                <p class="minValues" id="day3Min"> loading... </p>
-                <p class="maxValues" id="day3Max"> loading... </p>
-            </div>
-            <div class="icons">
-                <p class="weather" id="day4"></p>
-                <div class="image">
-                    <img src="logo-grape.png" class="imgClass" id="img4">
-                </div>
-                <p class="minValues" id="day4Min"> loading... </p>
-                <p class="maxValues" id="day4Max"> loading... </p>
-            </div>
-            <div class="icons">
-                <p class="weather" id="day5"></p>
-                <div class="image">
-                    <img src="logo-grape.png" class="imgClass" id="img5">
-                </div>
-                <p class="minValues" id="day5Min"> loading... </p>
-                <p class="maxValues" id="day5Max"> loading... </p>
-            </div>
-        </div>
-    </div> -->
-
-
-
-    
-        <!-- <div class="row">
-            <div class="col-md-12">
-                <div>Search for a city<br>
-                    <input type="text" id="city-input" />
-                    <button type="submit" id="search-button"><i class="fa fa-search"></i></button>
-                </div> -->
-<!--This section displays users' search history-->
-                <!-- <div id="search-history" class="d-flex flex-column">
-                    <ul id="city-list"></ul>
-                </div> -->
-       
-<!--This section presents today's weather-->
-                <!-- <div class="col-md-12" style="height:200px"></div>
-                    <div id="current-weather">
-                        <div id="city-name"></div>
-                        <div id="current-icon"></div>
-                        <p id="current-temp"></p>
-                        <p id="current-humidity"></p>
-                        <p id="current-wind"></p>
-                        <p id="current-UVIndex"></p>
-                    </div> -->
-<!--This section presents the next five-day weather forecast-->
-                    <!-- <h4>Five-Day Forecast</h4>
-                    <div class="col-md-12"  id="forecast-container"></div>
-                        <div class="row">
-                        <div class="col-2" id="1">1</div>
-                        <div class="col-2" id="2">2</div>
-                        <div class="col-2" id="3">3</div>
-                        <div class="col-3" id="4">4</div>
-                        <div class="col-3" id="5">5</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </section>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br> -->
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!--<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="/Users/hmtsang/Desktop/UCBerkeleryBootcamp/Homework/Weather-Dashboard/script.js"></script>
-    <!--<script type="text/javascript" src="script.js"></script>-->
 </body>
 </html>
