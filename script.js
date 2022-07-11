@@ -54,7 +54,7 @@ function getCoordinates(cityQuery) {
         cityQuery = "Los Angeles"
     }
     $.ajax({
-        url: "http://api.openweathermap.org/geo/1.0/direct?"
+        url: "https://api.openweathermap.org/geo/1.0/direct?"
             + "q=" + cityQuery
             + "&limit=" + 1
             + "&appid=82fcfb57b845804458f56e1829f74f3b",
