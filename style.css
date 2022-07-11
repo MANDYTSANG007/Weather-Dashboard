@@ -14,7 +14,7 @@
 
 #city-name {
     font-family:'Beau Rivage', cursive;
-    font-size: 8vh;
+    font-size: 10vh;
 }
 
 #forecast-header {
@@ -79,4 +79,8 @@ h2 > img {
     display: block;
     margin-top: 20px;
     height: 30px;
+}
+
+#delete {
+    float: right;
 }
