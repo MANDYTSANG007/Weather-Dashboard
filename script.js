@@ -116,17 +116,19 @@ function showHistory() {
         getHistory = [];
     }
 
-    $('#get-history').html(''); //get the HTML contents of the first element in the set of matched elements
+    //get the HTML contents of the first element in the set of matched elements
+    $('#get-history').html(''); 
     $.each(getHistory, function(i, input) {
         const $btn = $('<input type="button" value="delete" key="'+key+'" class="btn btn-outline-secondary" id="delete"/>');
 
         const li = $('<li>').append(input.name, $btn);
-
-        li.attr('class', 'list-group-item'); //gets the attribute value for only the first element in the matched set.
+        
+        //gets the attribute value for only the first element in the matched set.
+        li.attr('class', 'list-group-item'); 
         li.attr('data-index', i);
         $('#get-history').append(li);
     })
-    makeActive($('#get-history :first-child')); //:first-child selector can match more than one: one for each parent.
+    makeActive($('#get-history :first-child')); 
 
     if (window.localStorage) {
         var key, value;
@@ -142,8 +144,6 @@ function showHistory() {
         $(this).closest('li').remove();
         var key = $(this).attr('key');
         localStorage.removeItem(key);
-        // $('#get-history').listview('refresh');
-        // getHistory = getHistory.filter(entry => (entry.name != key));
         localStorage.setItem('getHistory', JSON.stringify(getHistory));
     })
 }
